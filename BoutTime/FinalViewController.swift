@@ -10,15 +10,18 @@ import UIKit
 
 class FinalViewController: UIViewController {
     
-    var stringPassed: String = ""
+    var correctedRounds: Int = 0
     
     @IBOutlet weak var playAgayButton: UIButton!
     
+    @IBOutlet weak var finalScoreLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("estoy en el view did load de final view correctedRounds \(correctedRounds)")
+        finalScoreLabel.text = "\(correctedRounds)/6"
     }
 
     override func didReceiveMemoryWarning() {

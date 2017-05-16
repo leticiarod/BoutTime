@@ -207,7 +207,7 @@
                         <outlet property="thirdEvent" destination="fmd-zA-PaH" id="Ejp-7L-4dQ"/>
                         <outlet property="thirdUpButton" destination="gO2-s1-4ur" id="7cf-xg-4Di"/>
                         <outlet property="timeLabel" destination="PBI-Oc-DbX" id="uYB-fG-h0f"/>
-                        <segue destination="1xH-er-RAa" kind="presentation" identifier="finishGame" id="c5G-tn-PzL"/>
+                        <segue destination="1xH-er-RAa" kind="presentation" identifier="finishGame" id="C9D-BZ-OQh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -261,6 +261,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="finalScoreLabel" destination="wz8-rh-U3P" id="jfM-Sk-dIJ"/>
                         <outlet property="playAgayButton" destination="Hyi-b2-4Kz" id="gOS-2Y-aEU"/>
                     </connections>
                 </viewController>

@@ -36,11 +36,11 @@ class ViewController: UIViewController {
     
     var task = DispatchWorkItem(block: {()})
     
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        print("pase por view did load ")
         self.becomeFirstResponder()
         nextButton.isHidden = true
         nextButton.isEnabled = false
@@ -59,8 +59,15 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        print("estoy en will appear ")
+        nextButton.isHidden = true
+        nextButton.isEnabled = false
+        askedRounds = 0
+        correctedRounds = 0
+        displayEvents()
+    }
+   
     func displayEvents(){
         
         currentRound = roundProvider.randomRound()
@@ -176,24 +183,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func nextRoundButton(_ sender: UIButton) {
+        print("presione next button y askedRounds es igual a \(askedRounds)")
         askedRounds += 1
         if askedRounds == totalRounds {
-            
+            print("entre a askedRounds == totalRounds \(askedRounds) \(totalRounds)")
+         
             // Find the view controller in the storyboard
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             //Wrap your view controller within the navigation controller
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView")
             //Present the navigation controller
             //nextViewController. stringPassed = "\(correctedRounds)/\(totalRounds)"
-            nextViewController.performSegue(withIdentifier: "finishGame", sender: <#T##Any?#>)
-            self.present(nextViewController, animated:true, completion:nil)
+            self.performSegue(withIdentifier: "finishGame", sender: self)
             
+            self.present(nextViewController, animated:true, completion:nil)
             
             //  task.cancel()
             // Game is over
             //displayScore()
         } else {
             // Continue game
+            print("estoy en el else ")
             displayEvents()
         }
 
@@ -202,6 +212,15 @@ class ViewController: UIViewController {
     
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "finishGame" {
+            guard let finalViewController = segue.destination as? FinalViewController else {
+                return
+            }
+            
+            finalViewController.correctedRounds = correctedRounds
+        }
+    }
 
     // MARK: - Helper Methods
     
