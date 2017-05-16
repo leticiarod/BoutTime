@@ -16,6 +16,11 @@ struct Round {
     let unorderedEvents: [Event]
     var orderedEvents: [Event]
     
+    init(){
+        self.unorderedEvents = []
+        self.orderedEvents = []
+    }
+    
     init(unorderedEvents: [Event], orderedEvents: [Event]){
         self.unorderedEvents = unorderedEvents
         self.orderedEvents = orderedEvents
